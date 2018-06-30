@@ -7,6 +7,8 @@ services:
   web:
     build: .
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    tty: true
+    stdin_open: true
     volumes:
       - .:/xy-inc
     ports:
