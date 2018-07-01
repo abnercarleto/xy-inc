@@ -5,6 +5,12 @@ class PointOfInterestsController < ApplicationController
     @point_of_interests = PointOfInterest.all
   end
 
+  def closeness
+    @point_of_interests = PointOfInterest.
+                          closeness(*params.require([:x, :y, :max_distance]).map(&:to_i))
+    render :index
+  end
+
   def show
   end
 

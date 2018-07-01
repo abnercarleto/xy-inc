@@ -12,6 +12,20 @@ RSpec.describe PointOfInterestsController, type: :controller do
     end
   end
 
+  describe "GET #closeness" do
+    it "returns a success response" do
+      create :point_of_interest
+      get :closeness, params: { x: 20, y: 10, max_distance: 10 }, format: :json
+      expect(response).to be_success
+    end
+
+    it "returns an error response" do
+      create :point_of_interest
+      get :closeness, params: {}, format: :json
+      expect(response).to have_http_status(:unprocessable_entity)
+    end
+  end
+
   describe "GET #show" do
     it "returns a success response" do
       point_of_interest = create :point_of_interest
