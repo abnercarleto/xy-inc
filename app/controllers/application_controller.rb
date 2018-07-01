@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from StandardError, with: :error
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
   private
 
