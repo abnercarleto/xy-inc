@@ -1,7 +1,7 @@
 # XY-INC
 
 A simple REST API service to create and list Points of interes by closeness.
-This service user Ruby on Rails and Docker.
+This service uses Ruby on Rails and Docker.
 
 # Install and run
 
