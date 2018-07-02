@@ -1,6 +1,10 @@
 class PointOfInterest < ApplicationRecord
   validates :name, :x, :y, presence: true
   validates :name, uniqueness: true
+  validates :x, :y, numericality: {
+    only_integer: true,
+    greater_than_or_equal_to: 0
+  }
 
   scope :x_lteq, -> (x_max) { where('x <= ?', x_max) }
   scope :x_gteq, -> (x_min) { where('x >= ?', x_min) }
