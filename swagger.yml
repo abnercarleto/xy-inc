@@ -1,0 +1,150 @@
+swagger: "2.0"
+info:
+  description: "REST API of ponts of interests"
+  version: "1.0.0"
+  title: "XY Inc"
+host: "localhost:3000"
+tags:
+- name: "point of interest"
+  description: "Everything about your Pets"
+schemes:
+- "https"
+- "http"
+paths:
+  /point_of_interests:
+    get:
+      tags:
+      - "point of interest"
+      summary: "List all Points of interest"
+      description: "List all Points of interest"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/PointOfInterest"
+    
+    post:
+      tags:
+      - "point of interest"
+      summary: "Add a new point of interest"
+      description: "Add a new point of interest"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "point_of_interest"
+        description: "Point of interest object that needs to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/PointOfInterest"
+      responses:
+        201:
+          description: "Created"
+          schema:
+            $ref: "#/definitions/PointOfInterest"
+        422:
+          description: "Unprocessable entity"
+  
+  "/point_of_interests/{id}":
+    get:
+      tags:
+      - "point of interest"
+      summary: "Find point of interest by ID"
+      description: "Find point of interest by ID"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of point of interest to return"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PointOfInterest"
+        404:
+          description: "Not found"
+          schema:
+            $ref: "#/definitions/GenericError"
+    
+    put:
+      tags:
+      - "point of interest"
+      summary: "Update a Point of interest"
+      description: "Update a Point of interest"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "ID of point of interest to return"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "point_of_interest"
+        description: "Point of interest object that needs to be created"
+        required: true
+        schema:
+          $ref: "#/definitions/PointOfInterest"
+      responses:
+        200:
+          description: "Ok"
+          schema:
+            $ref: "#/definitions/PointOfInterest"
+        422:
+          description: "Unprocessable entity"
+  
+  /point_of_interests/closeness:
+    get:
+      tags:
+        - "point of interest"
+      summary: List all close point of interest
+      description: List all close point of interest
+      parameters:
+      - name: "x"
+        in: "query"
+        description: "Position in X axis"
+        required: true
+        type: "integer"
+      - name: "y"
+        in: "query"
+        description: "Position in Y axis"
+        required: true
+        type: "integer"
+      - name: "max_distance"
+        in: "query"
+        description: "Mas distance to search close points of interest"
+        required: true
+        type: "integer"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/PointOfInterest"
+
+definitions:
+  PointOfInterest:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      x:
+        type: "integer"
+      y:
+        type: "integer"
+  
+  GenericError:
+    type: "object"
+    properties:
+      status:
+        type: "integer"
+      message:
+        type: "string"
