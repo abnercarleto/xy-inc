@@ -13,7 +13,7 @@ $ docker-compose build
 $ docker-compose run web rails db:setup
 $ docker-compose up
 ```
-* Consume the service in `http://localhost:3000` as described in [swagger.yml](https://github.com/abnercarleto/xy-inc/blob/master/swagger.yml)
+* Consume the service in `http://localhost:3000` as described in [swagger.yml](https://github.com/abnercarleto/xy-inc/blob/master/swagger.yml) (use [swagger editor](https://editor.swagger.io/) to visualise)
   * Use `POST /point_of_interests` to create a new PointOfInterest
   * Use `GET /point_of_interests` to list all PointOfInterests
   * Use `GET /point_of_interests/{id}` to return a specific PointOfInterest
